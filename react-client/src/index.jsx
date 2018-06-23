@@ -21,8 +21,8 @@ class App extends React.Component {
           <Navigation />
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path='/restaurants' component={RestaurantList}/>
             <Route path='/restaurants/submit' component={Form}/>
+            <Route path='/restaurants' component={RestaurantList}/>
           </Switch>
         </div>
       </Router>

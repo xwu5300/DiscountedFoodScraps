@@ -12,6 +12,7 @@ export default function Navigation() {
       </Navbar.Header>
       <Nav>
         <NavItem componentClass={Link} href="/restaurants" to="/restaurants">Restaurants</NavItem>
+        <NavItem componentClass={Link} href="/restaurants/submit" to="/restaurants/submit">Submit New Restaurant</NavItem>
       </Nav>
     </Navbar>
   )

@@ -45,10 +45,11 @@ export default class Form extends React.Component {
 	}
 
 	success(result) {
+
 		this.setState({
 			photoUrl: result.filesUploaded[0].url
 		});
-		console.log(this.state)
+
 	}
 
 	getValidationState() {
@@ -80,6 +81,7 @@ export default class Form extends React.Component {
 	}
 
 	render() {
+		console.log(this.state)
 		let photos;
 		if (this.state.photoUrl !== null) {
 			photos = this.state.photoUrl.map(file => <p>{file.name}</p>);
@@ -90,7 +92,7 @@ export default class Form extends React.Component {
 				style={{
 					backgroundColor: "#ECECEC",
 					borderRadius: "15px",
-					width: "40%"
+					width: "40%",
 				}}
 			>
 				<form style={{ marginLeft: "50px", marginRight: "50px" }}>
@@ -250,7 +252,10 @@ export default class Form extends React.Component {
 					>
 						Submit
 					</Button>
-				</form>{" "}
+
+
+				</form>
+								{this.state.photoUrl? <img src={`${this.state.photoUrl}`}r/> : <div></div>}
 			</div>
 		);
 	}

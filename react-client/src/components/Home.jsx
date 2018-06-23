@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Jumbotron, Button} from 'react-bootstrap';
 
 export default class Home extends React.Component {
   constructor() {
@@ -32,7 +33,19 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        {this.renderPopups()}
+{/*        <div className='styleLogin' style={{backgroundImage: `url("https://sc-events.s3.amazonaws.com/4413413/main.jpg")`, backgroundSize: 'cover', width: '100%', height: '90%', position:'absolute', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'}}>
+        </div>*/}
+        <Jumbotron style={{backgroundImage: `url("https://sc-events.s3.amazonaws.com/4413413/main.jpg")`, backgroundSize: 'cover', width: '100%', height: '90%', position:'absolute', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'}}>
+  <h1 style ={{color: 'white', marginLeft: '200px', marginTop: '200px'}}>Scrap It!</h1>
+  <p style ={{color: 'white', marginLeft: '200px'}}>
+    This is a simple hero unit, a simple jumbotron-style component for calling
+    extra attention to featured content or information.
+  </p>
+  <p>
+    <Button style ={{color: 'red', marginLeft: '200px'}} >Learn more</Button>
+  </p>
+</Jumbotron>;
+{/*        {this.renderPopups()}*/}
       </div>
     );
   }

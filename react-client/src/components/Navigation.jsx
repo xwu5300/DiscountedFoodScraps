@@ -7,7 +7,7 @@ export default function Navigation() {
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/">ScrapIt</Link>
+          <Link to="/">WNWN</Link>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>

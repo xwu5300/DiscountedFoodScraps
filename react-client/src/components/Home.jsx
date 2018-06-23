@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'react-bootstrap';
 import axios from 'axios';
 
 export default class Home extends React.Component {
@@ -33,6 +34,10 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
+        <Image
+          responsive
+          src="https://firebasestorage.googleapis.com/v0/b/discountedfoodscraps.appspot.com/o/heroes%2FHero%20Home%20page.jpg?alt=media&token=24134335-417e-4c83-9946-48b7fe1341c6"
+        />
         {this.renderPopups()}
       </div>
     );

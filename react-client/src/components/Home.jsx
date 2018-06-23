@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Home extends React.Component {
@@ -23,7 +24,7 @@ export default class Home extends React.Component {
   renderPopups() {
     return this.state.popups.map((popup, i) => (
       <div key={i}>
-        <div>{popup.name}</div>
+        <div><Link to={`/popups/${i}`}>{popup.name}</Link></div>
         <div>{popup.address}</div>
       </div>
     ));

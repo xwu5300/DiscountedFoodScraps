@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import axios from 'axios'
-import RestaurantList from './components/RestaurantList.jsx'
-import Navigation from './components/Navigation.jsx';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home.jsx';
 import Form from "./components/Form.jsx";
+import Navigation from './components/Navigation.jsx';
+import RestaurantList from './components/RestaurantList.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,14 +13,20 @@ class App extends React.Component {
       items: []
     }
   }
-  componentDidMount() {
-  }
+
   render () {
-    return (<div>
-      <Navigation />
-      <Form/>
-      <RestaurantList/>
-    </div>)
+    return (
+      <Router>
+        <div>
+          <Navigation />
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/restaurants' component={RestaurantList}/>
+            <Route path='/restaurants/submit' component={Form}/>
+          </Switch>
+        </div>
+      </Router>
+    )
   }
 }
 ReactDOM.render(<App/>, document.getElementById('app'));

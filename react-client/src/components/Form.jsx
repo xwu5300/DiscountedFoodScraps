@@ -14,6 +14,12 @@ import {
 } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import GoogleSearchBox from "./autocomplete.jsx";
+import ReactFilestack from "filestack-react";
+
+const basicOptions = {
+	fromSources: ["local_file_system"],
+	maxFiles: 1
+};
 
 export default class Form extends React.Component {
 	constructor(props, context) {
@@ -22,7 +28,8 @@ export default class Form extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.sendFormData = this.sendFormData.bind(this);
 		this.autocompleteHandler = this.autocompleteHandler.bind(this);
-		this.handlePhoto = this.handlePhoto.bind(this)
+		this.handlePhoto = this.handlePhoto.bind(this);
+		this.success = this.success.bind(this);
 
 		this.state = {
 			name: "",
@@ -32,8 +39,16 @@ export default class Form extends React.Component {
 			menu: "",
 			price: "",
 			quantity: "",
-			photoUrl: ""
+			photoUrl: null,
+			fileName: ""
 		};
+	}
+
+	success(result) {
+		this.setState({
+			photoUrl: result.filesUploaded[0].url
+		});
+		console.log(this.state)
 	}
 
 	getValidationState() {
@@ -59,12 +74,16 @@ export default class Form extends React.Component {
 		});
 	}
 	handlePhoto(photos) {
-	   	this.setState({
-			photoUrl:photos[0].preview
-		});
-	  }
+		console.log(photos);
+		this.state.photoUrl = photos[0].preview;
+		console.log(this.state);
+	}
 
 	render() {
+		let photos;
+		if (this.state.photoUrl !== null) {
+			photos = this.state.photoUrl.map(file => <p>{file.name}</p>);
+		}
 		return (
 			<div
 				className="form formDonate"
@@ -74,12 +93,12 @@ export default class Form extends React.Component {
 					width: "40%"
 				}}
 			>
-				<form style={{ marginLeft: "50px" }}>
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
-						<ControlLabel> Restaurant</ControlLabel>{" "}
+				<form style={{ marginLeft: "50px", marginRight: "50px" }}>
+					<FormGroup validationState={this.getValidationState()}>
+						<ControlLabel style={{ marginTop: "20px" }}>
+							{" "}
+							Restaurant
+						</ControlLabel>{" "}
 						<FormControl
 							id="name"
 							type="text"
@@ -97,10 +116,7 @@ export default class Form extends React.Component {
 						id="address"
 						autocompleteHandler={this.autocompleteHandler}
 					/>
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
+					<FormGroup validationState={this.getValidationState()}>
 						<ControlLabel> Email </ControlLabel>{" "}
 						<FormControl
 							id="email"
@@ -113,10 +129,7 @@ export default class Form extends React.Component {
 						/>
 						<FormControl.Feedback />
 					</FormGroup>{" "}
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
+					<FormGroup validationState={this.getValidationState()}>
 						<ControlLabel> Phone Number </ControlLabel>{" "}
 						<FormControl
 							id="phone"
@@ -129,10 +142,7 @@ export default class Form extends React.Component {
 						/>
 						<FormControl.Feedback />
 					</FormGroup>{" "}
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
+					<FormGroup validationState={this.getValidationState()}>
 						<ControlLabel> Menu Item </ControlLabel>{" "}
 						<FormControl
 							id="menu"
@@ -145,10 +155,7 @@ export default class Form extends React.Component {
 						/>
 						<FormControl.Feedback />
 					</FormGroup>{" "}
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
+					<FormGroup validationState={this.getValidationState()}>
 						<ControlLabel> Price </ControlLabel>{" "}
 						<FormControl
 							id="price"
@@ -161,10 +168,7 @@ export default class Form extends React.Component {
 						/>
 						<FormControl.Feedback />
 					</FormGroup>{" "}
-					<FormGroup
-						
-						validationState={this.getValidationState()}
-					>
+					<FormGroup validationState={this.getValidationState()}>
 						<ControlLabel> Quantity </ControlLabel>{" "}
 						<FormControl
 							id="quantity"
@@ -177,21 +181,62 @@ export default class Form extends React.Component {
 						/>
 						<FormControl.Feedback />
 					</FormGroup>
-					<Dropzone
-						onDrop={this.handlePhoto}
-						accept="image/*"
-						style={{
-							width: "30%",
-							height: "85px",
-							borderRadius: "5px",
-							border: "1px solid rgb(210, 210, 210)",
-							overflow: "auto"
-						}}
-					>
-						<p>
-							<Label>Drop Your Photos or Click to Upload!</Label>
-						</p>
-					</Dropzone>
+					<ReactFilestack
+						apikey={"A0lqArjXlRiOwVn8p9lRHz"}
+						onSuccess={this.success}
+						onError={() => {}}
+						render={({ onPick }) =>
+							!this.props.photo ? (
+								<div
+									className="user_resume_container"
+									style={{}}
+								>
+									<h2>
+										{" "}
+										<b>Photos</b>{" "}
+									</h2>
+									<div className="resume_div">
+										<a
+											href={this.props.resume_url}
+											target="_blank"
+										>
+											{this.props.resume_name}
+										</a>
+									</div>
+									<div className="resume_btns">
+										<button
+											onClick={onPick}
+											className="ui orange button"
+										>
+											Choose File
+										</button>
+										<button
+											className="ui red button"
+											onClick={() => {}}
+										>
+											Remove
+										</button>
+									</div>
+								</div>
+							) : (
+								<div>
+									<button
+										onClick={onPick}
+										className="ui orange inverted button"
+										style={{
+											display: "block",
+											margin: "auto"
+										}}
+									>
+										Upload Photo
+									</button>
+									<div className="photo_div">
+										{this.state.fileName}
+									</div>
+								</div>
+							)
+						}
+					/>
 					<Button
 						onClick={() => {
 							this.sendFormData();
@@ -212,7 +257,7 @@ export default class Form extends React.Component {
 }
 
 // {					<FormGroup
-// 						
+//
 // 						validationState={this.getValidationState()}
 // 					>
 // 						<ControlLabel> Address </ControlLabel>{" "}

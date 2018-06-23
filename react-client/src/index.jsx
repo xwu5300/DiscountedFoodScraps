@@ -5,6 +5,7 @@ import Home from './components/Home.jsx';
 import Form from "./components/Form.jsx";
 import Navigation from './components/Navigation.jsx';
 import RestaurantList from './components/RestaurantList.jsx'
+import Cart from './components/Cart.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home}/>
             <Route path='/restaurants/submit' component={Form}/>
             <Route path='/restaurants' component={RestaurantList}/>
+            <Route path='/cart' component={Cart}/>
           </Switch>
         </div>
       </Router>

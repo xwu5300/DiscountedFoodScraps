@@ -38,10 +38,10 @@ class Restaurant extends Component {
                 console.log('err', err)
               })
         }
-        // axios.post('/cart', {qty: this.state.qty})
-        // .then((res) => {
-        //     console.log('posted')
-        // })
+        axios.post('/cart', {meal: this.props.restaurant.menu, price: this.props.restaurant.price, quantity: this.state.qty, photoUrl: this.props.restaurant.photoUrl})
+        .then((res) => {
+            console.log('posted')
+        })
     }
     this.setState({qty: ''})
   }
@@ -52,9 +52,9 @@ class Restaurant extends Component {
             address: {this.props.restaurant.address}<br/>
             phone: {this.props.restaurant.phone}<br/>
             meal: {this.props.restaurant.menu}<br/>
-            price: {this.props.restaurant.price}<br/>
+            price: ${this.props.restaurant.price}<br/>
             quantity: {this.props.restaurant.quantity}<br/>
-            <img src={this.props.restaurant.photoUrl}/>
+            <img src={this.props.restaurant.photoUrl}/><br/>
             qty <input
                     value={this.state.qty}
                     type='text'

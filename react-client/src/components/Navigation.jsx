@@ -13,6 +13,7 @@ export default function Navigation() {
       <Nav>
         <NavItem componentClass={Link} href="/restaurants" to="/restaurants">Restaurants</NavItem>
         <NavItem componentClass={Link} href="/restaurants/submit" to="/restaurants/submit">Submit New Restaurant</NavItem>
+        <NavItem componentClass={Link} href="/cart" to="/cart">Cart</NavItem>
       </Nav>
     </Navbar>
   )

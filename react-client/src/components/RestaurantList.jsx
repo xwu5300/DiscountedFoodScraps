@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Restaurant from './Restaurant.jsx'
+import Cart from './Cart.jsx'
+
 class RestaurantList extends Component {
   constructor(props) {
     super(props)
@@ -14,11 +16,11 @@ class RestaurantList extends Component {
     this.getAllRestaurants()
   }
   getAllRestaurants() {
-      console.log('getting restaurant')
     axios.get('/restaurant')
          .then((response) => {
             this.addId(response.data)
          })
+         .catch((err) => console.log('err', err))
   }
   addId(restaurants) {
     let list = []
@@ -29,8 +31,8 @@ class RestaurantList extends Component {
     this.setState({restaurants: list})
   }
   render() {
-    console.log('this.stat', this.state)
     return (
+        <div>
         <div>
         {this.state.restaurants.map((restaurant, i) => (
             <div key={i} className="restaurant">
@@ -38,6 +40,7 @@ class RestaurantList extends Component {
             </div>
           ))}
         </div>
+</div>
     )
   }
 }

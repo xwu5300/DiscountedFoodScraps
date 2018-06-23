@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios'
 import RestaurantList from './components/RestaurantList.jsx'
+import Navigation from './components/Navigation.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       items: []
     }
   }
@@ -15,7 +16,7 @@ class App extends React.Component {
   }
   render () {
     return (<div>
-      <h1>Hello World</h1>
+      <Navigation />
       {/* <Form/> */}
       <RestaurantList/>
     </div>)

@@ -12,7 +12,7 @@ class Restaurant extends Component {
             name: {this.props.restaurant.name}<br/>
             address: {this.props.restaurant.address}<br/>
             phone: {this.props.restaurant.phone}<br/>
-            meals : 
+            meals :
             <div>
                 {this.props.restaurant.meals.map((meal, i) => (
                     <div key={i} className="meal">

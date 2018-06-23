@@ -11,9 +11,11 @@ class Restaurant extends Component {
       this.updateQty = this.updateQty.bind(this)
       this.addItem = this.addItem.bind(this)
   }
+
   updateQty(e) {
     this.setState({qty: e.target.value})
   }
+
   addItem() {
     if (Number(this.state.qty) > Number(this.props.restaurant.quantity)) {
         window.alert('the quantity you enter is greater than maximum.')
@@ -52,7 +54,7 @@ class Restaurant extends Component {
             meal: {this.props.restaurant.menu}<br/>
             price: {this.props.restaurant.price}<br/>
             quantity: {this.props.restaurant.quantity}<br/>
-            <img src= {this.props.restaurant.photoUrl}/>
+            <img src={this.props.restaurant.photoUrl}/>
             qty <input
                     value={this.state.qty}
                     type='text'

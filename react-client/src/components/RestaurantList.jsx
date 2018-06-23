@@ -14,6 +14,7 @@ class RestaurantList extends Component {
     this.getAllRestaurants()
   }
   getAllRestaurants() {
+      console.log('getting restaurant')
     axios.get('/restaurant')
          .then((response) => {
             this.addId(response.data)
@@ -33,7 +34,7 @@ class RestaurantList extends Component {
         <div>
         {this.state.restaurants.map((restaurant, i) => (
             <div key={i} className="restaurant">
-              <Restaurant restaurant={restaurant}/>
+              <Restaurant restaurant={restaurant} getAllRestaurants={this.getAllRestaurants}/>
             </div>
           ))}
         </div>

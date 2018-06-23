@@ -4,6 +4,7 @@ import $ from 'jquery';
 import axios from 'axios'
 import RestaurantList from './components/RestaurantList.jsx'
 import Navigation from './components/Navigation.jsx';
+import Form from "./components/Form.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <Navigation />
-      {/* <Form/> */}
+      <Form/>
       <RestaurantList/>
     </div>)
   }

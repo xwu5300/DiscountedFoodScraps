@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Restaurant from './Restaurant.jsx'
-
 class RestaurantList extends Component {
   constructor(props) {
     super(props)
@@ -9,20 +8,25 @@ class RestaurantList extends Component {
       restaurants: []
     }
     this.getAllRestaurants = this.getAllRestaurants.bind(this)
+    this.addId = this.addId.bind(this)
   }
-
   componentDidMount() {
     this.getAllRestaurants()
   }
-
   getAllRestaurants() {
     axios.get('/restaurant')
          .then((response) => {
-             console.log('rest list resp', response.data)
-             this.setState({restaurants: response.data})
+            this.addId(response.data)
          })
   }
-
+  addId(restaurants) {
+    let list = []
+    for (let key in restaurants) {
+      restaurants[key].id = key
+      list.push(restaurants[key])
+    }
+    this.setState({restaurants: list})
+  }
   render() {
     console.log('this.stat', this.state)
     return (
@@ -35,7 +39,5 @@ class RestaurantList extends Component {
         </div>
     )
   }
-
 }
-
 export default RestaurantList

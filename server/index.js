@@ -33,14 +33,17 @@ app.patch('/restaurant', (req, res) => {
 
 app.delete('/restaurant', (req, res) => {
   axios.delete(`https://discountedfoodscraps.firebaseio.com/restaurants/${req.query.id}.json`)
-  .then(() => res.send())
+  .then(() => {
+    console.log('delete item in rest')
+    res.send()
+  })
   .catch((err) => console.log('err', err))
 })
 
 app.get('/cart', (req, res) => {
   axios.get(cartUrl)
        .then((response) => {
-         res.send(Object.values(response.data))
+         res.send(response.data)
        })
        .catch((err) => {
          console.log('err', err)
@@ -56,6 +59,15 @@ app.post('/cart', (req, res) => {
        .catch((err) => {
          console.log('err', err)
        })
+})
+
+app.delete('/cart', (req, res) => {
+  console.log('req.id', req.query.id)
+  axios.delete(`https://discountedfoodscraps.firebaseio.com/cart/${req.query.id}.json`)
+  .then(() => {
+    console.log('delete item in rest')
+    res.send()})
+  .catch((err) => console.log('err', err))
 })
 
 app.listen(3000, function() {

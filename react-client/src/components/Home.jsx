@@ -27,7 +27,6 @@ export default class Home extends React.Component {
       <div key={i}>
         <div><Link to={`/popups/${i}`}>{popup.name}</Link></div>
         <div>{popup.address}</div>
-        <Image src={} ></Image>
       </div>
     ));
   }

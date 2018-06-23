@@ -40,7 +40,7 @@ lifecycle({
 }), withScriptjs)(props =>
    
       <StandaloneSearchBox ref={props.onSearchBoxMounted} bounds={props.bounds} onPlacesChanged={props.onPlacesChanged}>
-        <FormControl type="text" placeholder='Enter an address' style={{width:'30%'}}/> 
+        <FormControl type="text" placeholder='Enter an address' style={{width:'100%'}}/> 
       </StandaloneSearchBox>
 );
 
